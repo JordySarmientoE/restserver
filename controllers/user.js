@@ -21,6 +21,16 @@ const usuariosGet = async (req = request, res = response) => {
     })
 };
 
+const usuariosGetById = async(req,res) =>{
+
+    const { id } = req.params;
+
+    const usuario = await Usuario.findById(id);
+
+    res.json(usuario);
+
+};
+
 const usuariosPost = async (req, res = response) => {
 
 
@@ -72,5 +82,6 @@ module.exports = {
     usuariosPost,
     usuariosPut,
     usuariosPatch,
-    usuariosDelete
+    usuariosDelete,
+    usuariosGetById
 };
