@@ -5,7 +5,7 @@ const { validarCampos } = require('../middlewares/validar-campos');
 
 const { esRoleValido, emailExiste,existeUsuarioPorId } = require('../helpers/db-validators');
 
-const { usuariosGet,usuariosPost,usuariosPut,usuariosPatch,usuariosDelete,usuariosGetById } = require('../controllers/user');
+const { usuariosGet,usuariosPost,usuariosPut,usuariosDelete,usuariosGetById } = require('../controllers/user');
 
 const router = Router();
 
