@@ -65,15 +65,16 @@ const usuariosPut = async (req, res = response) => {
     })
 };
 
-const usuariosPatch = (req, res = response) => {
-    res.json({
-        msg: 'get PATCH - controller'
-    })
-};
+const usuariosDelete = async(req, res = response) => {
+    const { id } = req.params;
 
-const usuariosDelete = (req, res = response) => {
+    //Borrar físicamente
+    //const usuario = await Usuario.findByIdAndDelete(id);
+
+    const usuario = await Usuario.findByIdAndUpdate(id,{estado: false});
+
     res.json({
-        msg: 'get DELETE - controller'
+        usuario
     })
 };
 
@@ -81,7 +82,6 @@ module.exports = {
     usuariosGet,
     usuariosPost,
     usuariosPut,
-    usuariosPatch,
     usuariosDelete,
     usuariosGetById
 };

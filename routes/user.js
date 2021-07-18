@@ -9,12 +9,15 @@ const { usuariosGet,usuariosPost,usuariosPut,usuariosPatch,usuariosDelete,usuari
 
 const router = Router();
 
-router.get('/',[
-    check('id','No es un ID válido').isMongoId(),
-    check('id').custom(existeUsuarioPorId)
-], usuariosGet);
 
-router.get('/:id', usuariosGetById);
+
+router.get('/:id',[
+    check('id','No es un ID válido').isMongoId(),
+    check('id').custom(existeUsuarioPorId),
+    validarCampos
+], usuariosGetById);
+
+router.get('/', usuariosGet);
 
 router.post('/',[
     check('nombre','El nombre es obligatorio').not().isEmpty(),
@@ -33,8 +36,10 @@ router.put('/:id',[
     validarCampos
 ], usuariosPut);
 
-router.patch('/', usuariosPatch);
-
-router.delete('/', usuariosDelete);
+router.delete('/:id',[
+    check('id','No es un ID válido').isMongoId(),
+    check('id').custom(existeUsuarioPorId),
+    validarCampos
+], usuariosDelete);
 
 module.exports = router;
